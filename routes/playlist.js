@@ -46,4 +46,16 @@ router.post('/create-playlist', (req, res, next) => {
     });
 });
 
+router.post('/single-playlist/:playlistId', (req, res, next) => {
+  const videoId = req.body.videoId;
+  const videoName = req.body.videoName;
+  const playlistId = req.params.playlistId;
+
+  Playlist.findByIdAndUpdate(playlistId, {$push: { video: {id: videoId, name: videoName} }})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch(next);
+});
+
 module.exports = router;

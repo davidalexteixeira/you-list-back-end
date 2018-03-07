@@ -15,4 +15,12 @@ router.get('/playlists', (req, res, next) => {
     .catch(next);
 });
 
+// router.delete('/playlist', (req, res, next) => {
+//   Playlist.remove({_id:  })
+//   .then((data) => {
+//     res.json(data);
+//   })
+//   .catch(next);
+// })
+
 module.exports = router;
