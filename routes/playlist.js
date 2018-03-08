@@ -58,4 +58,16 @@ router.post('/single-playlist/:playlistId', (req, res, next) => {
     .catch(next);
 });
 
+router.put('/single-playlist/:playlistId', (req, res, next) => {
+  const playlistId = req.params.playlistId;
+  const videoId = req.body.videoId;
+  console.log(req.body.videoId);
+
+  Playlist.findByIdAndUpdate(playlistId, {$pull: {video: {id: videoId}}})
+    .then((data) => {
+      res.json(data);
+    })
+    .catch(next);
+});
+
 module.exports = router;
